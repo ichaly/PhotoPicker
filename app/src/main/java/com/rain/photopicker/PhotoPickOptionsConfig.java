@@ -3,7 +3,6 @@ package com.rain.photopicker;
 import android.content.Context;
 import android.os.Environment;
 import android.text.TextUtils;
-
 import com.rain.library.PhotoPickOptions;
 
 import java.io.File;
@@ -24,7 +23,7 @@ public class PhotoPickOptionsConfig {
         options.filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "eWorld/";
         options.imagePath = options.filePath + "cytx/";
         options.photoPickAuthority = context.getPackageName() + ".provider";
-        options.photoPickThemeColor = R.color.colorAccent;
+        options.photoPickThemeColor = R.color.green;
         return options;
     }
 

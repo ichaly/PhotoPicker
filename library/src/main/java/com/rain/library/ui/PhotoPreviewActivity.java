@@ -5,20 +5,15 @@ import android.content.Intent;
 import android.graphics.PointF;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.core.content.FileProvider;
-import androidx.appcompat.widget.Toolbar;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RadioButton;
-
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.FileProvider;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import com.davemorrissey.labs.subscaleview.ImageSource;
@@ -247,8 +242,8 @@ public class PhotoPreviewActivity extends BaseActivity implements OnPhotoTapList
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_ok, menu);
-        menuItem = menu.findItem(R.id.ok);
+        getMenuInflater().inflate(R.menu.menu_send, menu);
+        menuItem = menu.findItem(R.id.send);
         updateMenuItemTitle();
         return true;
     }
@@ -257,7 +252,7 @@ public class PhotoPreviewActivity extends BaseActivity implements OnPhotoTapList
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (PhotoPick.isTimeEnabled()) {
-            if (item.getItemId() == R.id.ok) {
+            if (item.getItemId() == R.id.send) {
                 if (!selectPhotosInfo.isEmpty()) {
                     if (PhotoPickConfig.getInstance().isStartCompression() && !isChecked && !MimeType.isVideo(selectPhotosInfo.get(0).getImageType())) {
                         if (loadingDialog != null) {

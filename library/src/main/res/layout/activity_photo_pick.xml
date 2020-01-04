@@ -25,23 +25,22 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginBottom="48dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:layout_marginBottom="48dp"/>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/dragView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="vertical"
             android:background="@android:color/white"
             android:clickable="true"
-            android:focusable="false"
-            android:orientation="vertical">
+            android:focusable="false">
 
             <View
                 android:id="@+id/view"
@@ -53,12 +52,12 @@
                 android:id="@+id/gallery"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:gravity="center_vertical"
                 android:minHeight="48dp"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:text="@string/gallery"
-                android:textSize="@dimen/text_size_16sp"/>
+                android:background="?android:attr/selectableItemBackground"
+                android:textSize="@dimen/text_size_16sp"
+                android:text="@string/gallery"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/gallery_rcl"

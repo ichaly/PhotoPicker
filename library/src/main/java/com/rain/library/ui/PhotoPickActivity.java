@@ -6,22 +6,16 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-
-import com.rain.library.BaseActivity;
-import com.rain.library.PhotoGalleryAdapter;
-import com.rain.library.PhotoPick;
-import com.rain.library.PhotoPickAdapter;
-import com.rain.library.PhotoPickOptions;
-import com.rain.library.R;
+import com.rain.library.*;
 import com.rain.library.bean.MediaData;
 import com.rain.library.bean.MediaDirectory;
 import com.rain.library.bean.PhotoPickBean;
@@ -38,12 +32,7 @@ import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.*;
 
 
 /**
@@ -82,9 +71,11 @@ public class PhotoPickActivity extends BaseActivity implements Observer {
         }
 
         //申请权限
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermission();
-        else init();
+        } else {
+            init();
+        }
     }
 
     /**
@@ -166,8 +157,9 @@ public class PhotoPickActivity extends BaseActivity implements Observer {
                     public void run() {
                         List<MediaData> photos = directories.get(0).getMediaData();
                         for (int i = 0; i < photos.size(); i++) {
-                            if (UtilsHelper.isFileExist(photos.get(i).getOriginalPath()))
+                            if (UtilsHelper.isFileExist(photos.get(i).getOriginalPath())) {
                                 photoList.add(photos.get(i));
+                            }
                         }
                         photoDirectoryList.add(directories.get(0));
                         for (int i = 1; i < directories.size(); i++) {
@@ -224,8 +216,8 @@ public class PhotoPickActivity extends BaseActivity implements Observer {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (!pickBean.isClipPhoto()) {
-            getMenuInflater().inflate(R.menu.menu_ok, menu);
-            menuItem = menu.findItem(R.id.ok);
+            getMenuInflater().inflate(R.menu.menu_send, menu);
+            menuItem = menu.findItem(R.id.send);
         }
         return true;
     }
@@ -233,7 +225,7 @@ public class PhotoPickActivity extends BaseActivity implements Observer {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (PhotoPick.isTimeEnabled()) {
-            if (item.getItemId() == R.id.ok) {
+            if (item.getItemId() == R.id.send) {
                 if (adapter != null && !adapter.getSelectPhotosInfo().isEmpty()) {
                     MediaData mediaData = adapter.getSelectPhotosInfo().get(0);
                     if (PhotoPickConfig.getInstance().isStartCompression() && !MimeType.isVideo(mediaData.getImageType())) {
@@ -282,8 +274,8 @@ public class PhotoPickActivity extends BaseActivity implements Observer {
     @Override
     public void onBackPressed() {
         if (slidingUpPanelLayout != null &&
-                (slidingUpPanelLayout.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED ||
-                        slidingUpPanelLayout.getPanelState() == SlidingUpPanelLayout.PanelState.ANCHORED)) {
+            (slidingUpPanelLayout.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED ||
+                slidingUpPanelLayout.getPanelState() == SlidingUpPanelLayout.PanelState.ANCHORED)) {
             slidingUpPanelLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
         } else {
             super.onBackPressed();
@@ -339,19 +331,19 @@ public class PhotoPickActivity extends BaseActivity implements Observer {
                     photo.setImageType(MimeType.createImageType(adapter.getCameraImagePath()));
                     photo.setMimeType(MimeType.TYPE_IMAGE);
                     PhotoPick.startCompression(PhotoPickActivity.this,
-                            new ArrayList<>(Arrays.asList(photo)), new CommonResult<File>() {
-                                @Override
-                                public void onSuccess(File data, boolean success) {
-                                    if (success) {
-                                        photo.setCompressed(true);
-                                        photo.setCompressionPath(data.getAbsolutePath());
-                                    } else {
-                                        photo.setCompressed(false);
-                                    }
-                                    adapter.getSelectPhotosInfo().add(photo);
-                                    sendImages();
+                        new ArrayList<>(Arrays.asList(photo)), new CommonResult<File>() {
+                            @Override
+                            public void onSuccess(File data, boolean success) {
+                                if (success) {
+                                    photo.setCompressed(true);
+                                    photo.setCompressionPath(data.getAbsolutePath());
+                                } else {
+                                    photo.setCompressed(false);
                                 }
-                            });
+                                adapter.getSelectPhotosInfo().add(photo);
+                                sendImages();
+                            }
+                        });
                 } else {
                     MediaData mediaData = new MediaData();
                     mediaData.setCamera(true);
@@ -415,7 +407,7 @@ public class PhotoPickActivity extends BaseActivity implements Observer {
                 adapter.getSelectPhotosInfo().remove(data.mediaData);
             }
             adapter.notifyItemChanged(data.position);
-            toolbar.getMenu().findItem(R.id.ok).setTitle(adapter.getTitle());
+            toolbar.getMenu().findItem(R.id.send).setTitle(adapter.getTitle());
         }
     }
 
