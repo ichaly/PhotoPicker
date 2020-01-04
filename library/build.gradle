@@ -24,7 +24,7 @@ dependencies {
     //PhotoView
     api 'com.github.chrisbanes:PhotoView:2.1.3'
     //slidingUpPanel
-    api 'com.sothree.slidinguppanel:library:3.4.0'
+    api 'com.github.ichaly:AndroidSlidingUpPanel:3.6.1'
     //Luban
     api 'top.zibin:Luban:1.1.8'
     //uCrop

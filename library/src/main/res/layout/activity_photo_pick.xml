@@ -13,12 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="bottom"
-        app:umanoDragView="@+id/dragView"
-        app:umanoOverlay="true"
-        app:umanoPanelHeight="48dp"
-        app:umanoParallaxOffset="100dp"
-        app:umanoScrollableView="@+id/gallery_rcl"
-        app:umanoShadowHeight="4dp">
+        app:umano_DragView="@+id/dragView"
+        app:umano_Overlay="true"
+        app:umano_PanelHeight="48dp"
+        app:umano_ParallaxOffset="100dp"
+        app:umano_ScrollableView="@+id/gallery_rcl"
+        app:umano_ShadowHeight="4dp">
 
         <LinearLayout
             android:layout_width="match_parent"
