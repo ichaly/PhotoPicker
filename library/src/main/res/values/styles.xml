@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="PhoAppTheme.AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -16,7 +16,7 @@
         <item name="android:textStyle">normal</item>
     </style>
 
-    <style name="style_alert_dialog" parent="android:Theme.Dialog">
+    <style name="PhoAppTheme.AppTheme.AlertDialog" parent="android:Theme.Dialog">
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowNoTitle">true</item>
@@ -25,6 +25,12 @@
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:backgroundDimAmount">0.4</item>
+    </style>
+
+    <style name="PhoAppTheme.AppTheme.CheckBox" tools:targetApi="lollipop"
+           parent="@android:style/Widget.Material.CompoundButton.CheckBox">
+        <item name="android:textSize">14sp</item>
+        <item name="android:colorControlNormal">@android:color/white</item>
     </style>
 
 </resources>

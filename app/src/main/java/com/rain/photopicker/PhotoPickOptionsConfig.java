@@ -19,9 +19,7 @@ public class PhotoPickOptionsConfig {
     public static PhotoPickOptions getPhotoPickOptions(Context context) {
         PhotoPickOptions options = new PhotoPickOptions();
         options.filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "eWorld/";
-        options.imagePath = options.filePath + "cytx/";
         options.photoPickAuthority = context.getPackageName() + ".provider";
-        options.photoPickThemeColor = R.color.green;
         return options;
     }
 

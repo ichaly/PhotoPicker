@@ -35,7 +35,7 @@ public class PhotoPickOptions {
     /**
      * 自定义PhotoPick主题色
      */
-    public int photoPickThemeColor = android.R.color.holo_red_light;
+    public int photoPickThemeColor = R.color.colorPrimary;
 
     /**
      * 自定义返回键图标

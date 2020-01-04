@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-
 import com.rain.library.R;
 
 /**
@@ -17,8 +16,7 @@ import com.rain.library.R;
  */
 public class LoadingDialog extends AlertDialog {
     public LoadingDialog(@NonNull Context context) {
-        super(context, R.style.style_alert_dialog);
-
+        super(context, R.style.PhoAppTheme_AppTheme_AlertDialog);
         setCancelable(false);
         setCanceledOnTouchOutside(false);
     }
@@ -27,6 +25,5 @@ public class LoadingDialog extends AlertDialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_loading);
-
     }
 }
