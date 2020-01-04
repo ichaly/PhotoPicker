@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.widget.ImageView;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
@@ -22,17 +21,16 @@ public class GlideImageLoader implements ImageLoader {
 
     @Override
     public void displayImage(Context context, String originalImagePath, String thumbnailsImagePath, final ImageView imageView, boolean resize, boolean loadThumbnailsImage) {
-        RequestOptions options = new RequestOptions();
+        RequestOptions options = new RequestOptions().error(R.mipmap.image_error).placeholder(R.mipmap.image_placeholder);
+        if (resize) {
+            options = options.centerCrop();
+        }
         RequestBuilder<Drawable> load;
         if (loadThumbnailsImage && !TextUtils.isEmpty(thumbnailsImagePath)) {
-            if (resize) options.centerCrop();
             load = Glide.with(context).load(originalImagePath).thumbnail(Glide.with(context).load(thumbnailsImagePath).apply(options));
         } else {
             load = Glide.with(context).load(originalImagePath);
         }
-
-        if (resize) options.centerCrop();
-        options.error(context.getResources().getDrawable(R.mipmap.error_image));
         load.apply(options).transition(DrawableTransitionOptions.withCrossFade()).into(imageView);
     }
 

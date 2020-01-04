@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/black">
 
     <include layout="@layout/toolbar_layout"/>
 
@@ -10,20 +12,18 @@
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/rll_bottom"
         android:layout_below="@+id/toolbar"/>
-
 
     <RelativeLayout
         android:id="@+id/rll_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
-        android:background="#80000000"
-        android:minHeight="48dp"
+        android:layout_alignParentBottom="true"
         android:paddingLeft="@dimen/layout_padding_16dp"
-        android:paddingRight="@dimen/layout_padding_16dp">
+        android:paddingRight="@dimen/layout_padding_16dp"
+        android:minHeight="48dp"
+        android:background="#80000000">
 
         <RadioButton
             android:id="@+id/radioButton"
@@ -31,8 +31,8 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:checked="false"
-            android:text="@string/original_image"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white"
+            android:text="@string/original_image"/>
 
         <CheckBox
             android:id="@+id/checkbox"
@@ -40,8 +40,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:text="@string/selected"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white"
+            android:text="@string/selected"/>
     </RelativeLayout>
 
 </RelativeLayout>
