@@ -69,7 +69,6 @@ public class PhotoPickActivity extends BaseActivity implements Observer {
             finish();
             return;
         }
-
         //申请权限
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermission();

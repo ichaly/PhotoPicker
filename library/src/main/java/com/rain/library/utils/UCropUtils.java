@@ -31,7 +31,7 @@ public class UCropUtils {
         options.setCompressionFormat(Bitmap.CompressFormat.PNG);
         //可以调整裁剪框
         options.setFreeStyleCropEnabled(true);
-        if (showClipCircle == true) {
+        if (showClipCircle) {
             //设置裁剪框圆形
             options.setCircleDimmedLayer(true);
             //设置是否展示矩形裁剪框
