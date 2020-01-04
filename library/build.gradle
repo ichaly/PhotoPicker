@@ -1,20 +1,13 @@
 apply plugin: 'com.android.library'
 
-apply plugin: 'com.github.dcendents.android-maven'
-group = 'com.github.yudu233'
-
 android {
     compileSdkVersion rootProject.ext.sdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion rootProject.ext.sdkVersion
         versionCode 1
         versionName "2.0.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
@@ -38,5 +31,4 @@ dependencies {
     api 'com.github.yalantis:ucrop:2.2.2'
     //subsampling-scale-image-view
     api 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
-
 }

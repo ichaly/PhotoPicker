@@ -2,7 +2,7 @@ package com.rain.library.data;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.rain.library.R;
 import com.rain.library.bean.MediaData;

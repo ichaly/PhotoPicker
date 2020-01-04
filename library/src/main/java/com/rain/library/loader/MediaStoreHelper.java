@@ -4,19 +4,17 @@ import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.Loader;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.Loader;
 import com.rain.library.bean.MediaData;
 import com.rain.library.bean.MediaDirectory;
 import com.rain.library.data.Data;
 import com.rain.library.utils.ExternalStorage;
 import com.rain.library.utils.MimeType;
-import com.rain.library.utils.Rlog;
 
 import java.io.File;
 import java.util.ArrayList;

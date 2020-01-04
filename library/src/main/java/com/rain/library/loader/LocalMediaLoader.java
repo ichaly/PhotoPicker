@@ -3,9 +3,9 @@ package com.rain.library.loader;
 import android.content.Context;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v4.content.CursorLoader;
+import androidx.annotation.NonNull;
 
+import androidx.loader.content.CursorLoader;
 import com.rain.library.utils.MimeType;
 
 import java.util.Locale;
