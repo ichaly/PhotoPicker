@@ -7,6 +7,7 @@
     android:layout_height="?attr/actionBarSize"
     android:minHeight="?attr/actionBarSize"
     android:background="@color/colorPrimary"
+    toolbar:title="@string/app_name"
     android:fitsSystemWindows="true"
     toolbar:contentInsetStartWithNavigation="0dp"
     toolbar:popupTheme="@style/ThemeOverlay.AppCompat.Light"
