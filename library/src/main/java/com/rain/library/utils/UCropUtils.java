@@ -43,8 +43,10 @@ public class UCropUtils {
             options.setShowCropFrame(true);
             options.setShowCropGrid(true);
         }
-        options.setToolbarColor(PhotoPick.getToolbarBackGround());
         options.setStatusBarColor(PhotoPick.getToolbarBackGround());
+        options.setToolbarColor(PhotoPick.getToolbarBackGround());
+        options.setToolbarWidgetColor(mActivity.getResources().getColor(android.R.color.white));
+        options.setActiveControlsWidgetColor(PhotoPick.getToolbarBackGround());
         options.setActiveWidgetColor(PhotoPick.getToolbarBackGround());
 
         uCrop.withOptions(options);
