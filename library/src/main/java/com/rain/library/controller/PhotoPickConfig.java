@@ -170,15 +170,6 @@ public class PhotoPickConfig {
         }
 
         /**
-         * 是否将拍照的结果同步到系统相册中
-         * 默认保存
-         */
-        public Builder saveToAlbum(boolean saveToAlbum) {
-            pickBean.setSaveToAlbum(saveToAlbum);
-            return this;
-        }
-
-        /**
          * 是否展示gif
          *
          * @param showGif 默认展示

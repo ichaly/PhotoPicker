@@ -19,7 +19,6 @@ public class PhotoPickBean implements Parcelable {
     private int spanCount;              //recyclerView有多少列
     private boolean showClipCircle;     //圆形裁剪方式
     private boolean showCamera;         //是否展示拍照icon
-    private boolean saveToAlbum = true; //是否保存拍照到相册
     private boolean clipPhoto;          //是否启动裁剪图片
     private boolean originalPicture;    //是否选择的是原图
     private boolean startCompression;   //是否开启图片压缩
@@ -125,14 +124,6 @@ public class PhotoPickBean implements Parcelable {
 
     public void setCallback(PhotoSelectCallback callback) {
         this.callback = callback;
-    }
-
-    public boolean isSaveToAlbum() {
-        return saveToAlbum;
-    }
-
-    public void setSaveToAlbum(boolean saveToAlbum) {
-        this.saveToAlbum = saveToAlbum;
     }
 
     @Override
