@@ -4,8 +4,10 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,6 +34,7 @@ import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 
@@ -301,6 +304,7 @@ public class PhotoPickActivity extends BaseActivity implements Observer {
                 setResult(Activity.RESULT_OK, data);
                 finish();
                 break;
+            default:
         }
     }
 
@@ -319,6 +323,17 @@ public class PhotoPickActivity extends BaseActivity implements Observer {
         if (adapter.getCameraUri() == null || TextUtils.isEmpty(adapter.getCameraImagePath())) {
             PhotoPick.toast(R.string.unable_find_pic);
         } else {
+            if (pickBean.isSaveToAlbum()) {
+                // 把文件插入到系统图库
+                try {
+                    File file = new File(adapter.getCameraImagePath());
+                    MediaStore.Images.Media.insertImage(getContentResolver(), file.getAbsolutePath(), file.getName(), null);
+                    // 通知图库更新
+                    sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
             if (pickBean.isClipPhoto()) {
                 //拍完照之后，如果要启动裁剪，则去裁剪再把地址传回来
                 adapter.startClipPic(adapter.getCameraImagePath());

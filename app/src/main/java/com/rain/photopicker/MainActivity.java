@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
                     .maxPickSize(PhotoPickConfig.DEFAULT_CHOOSE_SIZE)   //多选时可以选择的图片数量，默认为1张
                     .setMimeType(MimeType.TYPE_ALL)     //显示文件类型，默认全部（全部、图片、视频）
                     .showCamera(true)           //是否展示相机icon，默认展示
+                    .saveToAlbum(true)
                     .clipPhoto(true)            //是否开启裁剪照片功能，默认关闭
                     .clipCircle(false)          //是否裁剪方式为圆形，默认为矩形
                     .showOriginal(true)         //是否显示原图按钮，默认显示

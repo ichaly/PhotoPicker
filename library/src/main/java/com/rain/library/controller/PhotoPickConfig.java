@@ -2,7 +2,6 @@ package com.rain.library.controller;
 
 import android.app.Activity;
 import android.content.Intent;
-
 import com.rain.library.R;
 import com.rain.library.bean.MediaData;
 import com.rain.library.bean.PhotoPickBean;
@@ -167,6 +166,15 @@ public class PhotoPickConfig {
          */
         public Builder showCamera(boolean showCamera) {
             pickBean.setShowCamera(showCamera);
+            return this;
+        }
+
+        /**
+         * 是否将拍照的结果同步到系统相册中
+         * 默认保存
+         */
+        public Builder saveToAlbum(boolean saveToAlbum) {
+            pickBean.setSaveToAlbum(saveToAlbum);
             return this;
         }
 
