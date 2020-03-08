@@ -3,12 +3,10 @@ package com.rain.library.controller;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-
 import com.rain.library.PhotoPick;
 import com.rain.library.R;
 import com.rain.library.bean.MediaData;
 import com.rain.library.bean.PhotoPreviewBean;
-import com.rain.library.impl.PhotoSelectCallback;
 import com.rain.library.ui.PhotoPreviewActivity;
 
 import java.util.ArrayList;
@@ -97,6 +95,11 @@ public class PhotoPreviewConfig {
 
         public Builder setSelectPhotosInfo(ArrayList<MediaData> selectPhotosInfo) {
             bean.setSelectPhotosInfo(selectPhotosInfo);
+            return this;
+        }
+
+        public Builder setVideoLimit(long limit) {
+            bean.setVideoLimit(limit);
             return this;
         }
 

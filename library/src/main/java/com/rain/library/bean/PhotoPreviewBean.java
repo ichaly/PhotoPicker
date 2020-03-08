@@ -12,6 +12,7 @@ public class PhotoPreviewBean implements Parcelable {
     private ArrayList<String> selectPhotos;
     private ArrayList<MediaData> selectPhotosInfo;
     private int maxPickSize;
+    private long videoLimit = 0;
     private boolean originalPicture;//是否选择的是原图
 
     public PhotoPreviewBean() {
@@ -65,6 +66,14 @@ public class PhotoPreviewBean implements Parcelable {
         this.originalPicture = originalPicture;
     }
 
+    public long getVideoLimit() {
+        return videoLimit;
+    }
+
+    public void setVideoLimit(long videoLimit) {
+        this.videoLimit = videoLimit;
+    }
+
     protected PhotoPreviewBean(Parcel in) {
         position = in.readInt();
         photos = in.createTypedArrayList(MediaData.CREATOR);
@@ -72,6 +81,7 @@ public class PhotoPreviewBean implements Parcelable {
         selectPhotosInfo = in.createTypedArrayList(MediaData.CREATOR);
         maxPickSize = in.readInt();
         originalPicture = in.readByte() != 0;
+        videoLimit = in.readLong();
     }
 
     @Override
@@ -82,6 +92,7 @@ public class PhotoPreviewBean implements Parcelable {
         dest.writeTypedList(selectPhotosInfo);
         dest.writeInt(maxPickSize);
         dest.writeByte((byte) (originalPicture ? 1 : 0));
+        dest.writeLong(videoLimit);
     }
 
     @Override

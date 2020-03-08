@@ -59,6 +59,7 @@ public class PhotoPreviewActivity extends BaseActivity implements OnPhotoTapList
     private RadioButton radioButton;
     private int pos;                    //当前位置
     private int maxPickSize;            //最大选择个数
+    private long videoLimit = 0;            // 视频长度限制
     private boolean isChecked = false;  //是否已选定
     private boolean originalPicture;    //是否选择的是原图
     private PhotoSelectCallback callback;
@@ -88,6 +89,7 @@ public class PhotoPreviewActivity extends BaseActivity implements OnPhotoTapList
 
         originalPicture = bean.isOriginalPicture();
         maxPickSize = bean.getMaxPickSize();
+        videoLimit = bean.getVideoLimit();
         selectPhotosInfo = bean.getSelectPhotosInfo();
         callback = PhotoPickConfig.getInstance().getCallback();
         setContentView(R.layout.activity_photo_select);
@@ -125,7 +127,15 @@ public class PhotoPreviewActivity extends BaseActivity implements OnPhotoTapList
                             return;
                         }
                     }
-
+                    MediaData data = photos.get(pos);
+                    if (videoLimit > 0
+                        && MimeType.isVideo(data.getImageType())
+                        && data.getDuration() > videoLimit
+                    ) {
+                        checkbox.setChecked(false);
+                        PhotoPick.toast("视频不能超过" + (videoLimit / 1000) + "秒");
+                        return;
+                    }
                     if (selectPhotosInfo.size() == maxPickSize && checkbox.isChecked()) {
                         checkbox.setChecked(false);
                         PhotoPick.toast(getString(R.string.tips_max_num, maxPickSize));
@@ -401,16 +411,16 @@ public class PhotoPreviewActivity extends BaseActivity implements OnPhotoTapList
 
             String originalImagePath = photos.get(position).getOriginalPath();
             int imageWidth = photos.get(position).getImageWidth() == 0 ? UtilsHelper.getScreenWidth(PhotoPreviewActivity.this) :
-                    photos.get(position).getImageWidth();
+                photos.get(position).getImageWidth();
             int imageHeight = photos.get(position).getImageHeight() == 0 ? UtilsHelper.getScreenHeight(PhotoPreviewActivity.this) :
-                    photos.get(position).getImageHeight();
+                photos.get(position).getImageHeight();
             if (imageHeight / imageWidth > MAX_SCALE) {
                 //加载长截图
                 view = longView;
                 SubsamplingScaleImageView imageView = longView.findViewById(R.id.iv_media_image);
                 float scale = UtilsHelper.getImageScale(PhotoPreviewActivity.this, originalImagePath);
                 imageView.setImage(ImageSource.uri(originalImagePath),
-                        new ImageViewState(scale, new PointF(0, 0), 0));
+                    new ImageViewState(scale, new PointF(0, 0), 0));
             } else {
                 view = simpleView;
                 PhotoView imageView = (PhotoView) simpleView.findViewById(R.id.iv_media_image);

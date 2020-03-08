@@ -139,7 +139,7 @@ public class PhotoPickAdapter extends RecyclerView.Adapter {
                     .setPosition(photoPickBean.isShowCamera() ? getAdapterPosition() - 1 : getAdapterPosition())
                     .setMaxPickSize(photoPickBean.getMaxPickSize())
                     .setSelectPhotosInfo(selectPhotosInfo)
-//                        .setSelectPhotos(selectPhotos)
+                    .setVideoLimit(photoPickBean.getVideoLimit())
                     .setOriginalPicture(photoPickBean.isOriginalPicture())
                     .build();
             }
@@ -158,13 +158,14 @@ public class PhotoPickAdapter extends RecyclerView.Adapter {
                         checkbox.setChecked(false);
                         return;
                     }
-                    if (photoPickBean.getVideoLimit() > 0
-                        && MimeType.isVideo(data.getImageType())
-                        && data.getDuration() > photoPickBean.getVideoLimit()
-                    ) {
-                        PhotoPick.toast("视频不能超过" + (photoPickBean.getVideoLimit() / 1000) + "秒");
-                        return;
-                    }
+                }
+                if (photoPickBean.getVideoLimit() > 0
+                    && MimeType.isVideo(data.getImageType())
+                    && data.getDuration() > photoPickBean.getVideoLimit()
+                ) {
+                    checkbox.setChecked(false);
+                    PhotoPick.toast("视频不能超过" + (photoPickBean.getVideoLimit() / 1000) + "秒");
+                    return;
                 }
                 if (selectPhotosInfo.size() == photoPickBean.getMaxPickSize()) {
                     checkbox.setChecked(false);
