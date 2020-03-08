@@ -107,6 +107,11 @@ public class PhotoPickConfig {
             return this;
         }
 
+        public Builder setVideoLimit(long limit) {
+            pickBean.setVideoLimit(limit);
+            return this;
+        }
+
         /**
          * 手动设置GridView列数
          * 默认为9
@@ -232,6 +237,13 @@ public class PhotoPickConfig {
         public Builder selectedMimeType(List<MediaData> mediaDataList) {
             if (mediaDataList.size() != 0) {
                 setMimeType(MimeType.isPictureType(mediaDataList.get(0).getImageType()));
+            }
+            return this;
+        }
+
+        public Builder videoLimit(long limit) {
+            if (limit > 0) {
+                setVideoLimit(limit);
             }
             return this;
         }

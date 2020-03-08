@@ -15,6 +15,7 @@ import com.rain.library.loader.ImageLoader;
 public class PhotoPickBean implements Parcelable {
 
     private int maxPickSize;            //最多可以选择多少张图片
+    private long videoLimit = 0;            // 视频时长限制
     private int pickMode;               //单选还是多选
     private int spanCount;              //recyclerView有多少列
     private boolean showClipCircle;     //圆形裁剪方式
@@ -144,6 +145,7 @@ public class PhotoPickBean implements Parcelable {
         dest.writeByte(this.originalPicture ? (byte) 1 : (byte) 0);
         dest.writeByte(this.startCompression ? (byte) 1 : (byte) 0);
         dest.writeSerializable(this.imageLoader);
+        dest.writeLong(this.videoLimit);
     }
 
     protected PhotoPickBean(Parcel in) {
@@ -158,6 +160,7 @@ public class PhotoPickBean implements Parcelable {
         this.showGif = in.readByte() != 0;
         this.mimeType = in.readInt();
         this.imageLoader = (ImageLoader) in.readSerializable();
+        this.videoLimit = in.readLong();
     }
 
     public static final Creator<PhotoPickBean> CREATOR = new Creator<PhotoPickBean>() {
@@ -171,4 +174,12 @@ public class PhotoPickBean implements Parcelable {
             return new PhotoPickBean[size];
         }
     };
+
+    public long getVideoLimit() {
+        return videoLimit;
+    }
+
+    public void setVideoLimit(long videoLimit) {
+        this.videoLimit = videoLimit;
+    }
 }

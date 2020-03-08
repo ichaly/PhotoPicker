@@ -8,10 +8,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
-import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.Display;
@@ -21,7 +17,10 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
+import androidx.recyclerview.widget.RecyclerView;
 import com.rain.library.bean.MediaData;
 import com.rain.library.bean.PhotoPickBean;
 import com.rain.library.controller.PhotoPickConfig;
@@ -131,18 +130,18 @@ public class PhotoPickAdapter extends RecyclerView.Adapter {
                     selectPicFromCamera();
                 }
             } else if (photoPickBean.isClipPhoto() &&
-                    (!MimeType.isVideo(getItem(getAdapterPosition()).getImageType()))) {
+                (!MimeType.isVideo(getItem(getAdapterPosition()).getImageType()))) {
                 //头像裁剪
                 startClipPic(getItem(getAdapterPosition()).getOriginalPath());
             } else {
                 //查看大图
                 new PhotoPreviewConfig.Builder((Activity) context)
-                        .setPosition(photoPickBean.isShowCamera() ? getAdapterPosition() - 1 : getAdapterPosition())
-                        .setMaxPickSize(photoPickBean.getMaxPickSize())
-                        .setSelectPhotosInfo(selectPhotosInfo)
+                    .setPosition(photoPickBean.isShowCamera() ? getAdapterPosition() - 1 : getAdapterPosition())
+                    .setMaxPickSize(photoPickBean.getMaxPickSize())
+                    .setSelectPhotosInfo(selectPhotosInfo)
 //                        .setSelectPhotos(selectPhotos)
-                        .setOriginalPicture(photoPickBean.isOriginalPicture())
-                        .build();
+                    .setOriginalPicture(photoPickBean.isOriginalPicture())
+                    .build();
             }
         }
 
@@ -157,6 +156,13 @@ public class PhotoPickAdapter extends RecyclerView.Adapter {
                     if (!toEqual) {
                         PhotoPick.toast(R.string.tips_rule);
                         checkbox.setChecked(false);
+                        return;
+                    }
+                    if (photoPickBean.getVideoLimit() > 0
+                        && MimeType.isVideo(data.getImageType())
+                        && data.getDuration() > photoPickBean.getVideoLimit()
+                    ) {
+                        PhotoPick.toast("视频不能超过" + (photoPickBean.getVideoLimit() / 1000) + "秒");
                         return;
                     }
                 }
