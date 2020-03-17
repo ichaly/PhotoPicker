@@ -290,6 +290,8 @@ public class PhotoPickActivity extends BaseActivity implements Observer {
         switch (requestCode) {
             case REQUEST_CODE_SHOW_CAMERA://相机
                 findPhoto();
+                // 发送广播通知刷新图库的显示
+                sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + adapter.getCameraImagePath())));
                 break;
             case UCrop.REQUEST_CROP:    //裁剪
                 findClipPhoto();
@@ -321,8 +323,6 @@ public class PhotoPickActivity extends BaseActivity implements Observer {
         if (adapter.getCameraUri() == null || TextUtils.isEmpty(adapter.getCameraImagePath())) {
             PhotoPick.toast(R.string.unable_find_pic);
         } else {
-            // 发送广播通知刷新图库的显示
-            sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + adapter.getCameraImagePath())));
             if (pickBean.isClipPhoto()) {
                 //拍完照之后，如果要启动裁剪，则去裁剪再把地址传回来
                 adapter.startClipPic(adapter.getCameraImagePath());

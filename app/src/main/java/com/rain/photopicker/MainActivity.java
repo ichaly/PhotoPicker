@@ -29,28 +29,28 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_single).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //new PhotoPickConfig
-                //    .Builder(MainActivity.this)
-                //    .imageLoader(new GlideImageLoader())                //图片加载方式，支持任意第三方图片加载库
-                //    .spanCount(PhotoPickConfig.GRID_SPAN_COUNT)         //相册列表每列个数，默认为3
-                //    .pickMode(PhotoPickConfig.MODE_PICK_SINGLE)           //设置照片选择模式为单选，默认为单选
-                //    .maxPickSize(PhotoPickConfig.DEFAULT_CHOOSE_SIZE)   //多选时可以选择的图片数量，默认为1张
-                //    .setMimeType(MimeType.TYPE_ALL)     //显示文件类型，默认全部（全部、图片、视频）
-                //    .showCamera(true)           //是否展示相机icon，默认展示
-                //    .clipPhoto(true)            //是否开启裁剪照片功能，默认关闭
-                //    .clipCircle(false)          //是否裁剪方式为圆形，默认为矩形
-                //    .showOriginal(true)         //是否显示原图按钮，默认显示
-                //    .startCompression(true)     //是否开启压缩，默认true
-                //    .selectedMimeType(data)     //选择后返回的文件（用于判断下次进入是否可展示其他类型文件）
-                //    .build();
                 new PhotoPickConfig
                     .Builder(MainActivity.this)
-                    .imageLoader(new GlideImageLoader())
-                    .pickMode(PhotoPickConfig.MODE_PICK_SINGLE)
-                    .setMimeType(MimeType.TYPE_VIDEO)
-                    .showCamera(false)
-                    .videoLimit(15 * 1000)
+                    .imageLoader(new GlideImageLoader())                //图片加载方式，支持任意第三方图片加载库
+                    .spanCount(PhotoPickConfig.GRID_SPAN_COUNT)         //相册列表每列个数，默认为3
+                    .pickMode(PhotoPickConfig.MODE_PICK_SINGLE)           //设置照片选择模式为单选，默认为单选
+                    .maxPickSize(PhotoPickConfig.DEFAULT_CHOOSE_SIZE)   //多选时可以选择的图片数量，默认为1张
+                    .setMimeType(MimeType.TYPE_ALL)     //显示文件类型，默认全部（全部、图片、视频）
+                    .showCamera(true)           //是否展示相机icon，默认展示
+                    .clipPhoto(true)            //是否开启裁剪照片功能，默认关闭
+                    .clipCircle(false)          //是否裁剪方式为圆形，默认为矩形
+                    .showOriginal(true)         //是否显示原图按钮，默认显示
+                    .startCompression(true)     //是否开启压缩，默认true
+                    .selectedMimeType(data)     //选择后返回的文件（用于判断下次进入是否可展示其他类型文件）
                     .build();
+                //new PhotoPickConfig
+                //    .Builder(MainActivity.this)
+                //    .imageLoader(new GlideImageLoader())
+                //    .pickMode(PhotoPickConfig.MODE_PICK_SINGLE)
+                //    .setMimeType(MimeType.TYPE_VIDEO)
+                //    .showCamera(false)
+                //    .videoLimit(15 * 1000)
+                //    .build();
             }
         });
 
