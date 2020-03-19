@@ -137,7 +137,7 @@ public class PhotoPickConfig {
             pickBean.setPickMode(pickMode);
             if (pickMode == MODE_PICK_SINGLE) pickBean.setMaxPickSize(1);
             else if (pickMode == MODE_PICK_MORE) {
-                pickBean.setShowCamera(false);
+                //pickBean.setShowCamera(false);
                 pickBean.setClipPhoto(false);
                 pickBean.setMaxPickSize(9);
             } else throw new IllegalArgumentException("unKnow_pickMode : " + pickMode);
